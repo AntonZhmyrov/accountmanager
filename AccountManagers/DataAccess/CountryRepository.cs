@@ -1,27 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using AccountManagers.Interfaces;
 using AccountManagers.Models;
 
 namespace AccountManagers.DataAccess
 {
-	public class CountryRepository : IRepository<Country>
+	public class CountryRepository : ICountryRepository
 	{
+		private readonly CountryContext _dataContext;
+
+		public CountryRepository()
+		{
+			_dataContext = new CountryContext();
+		}
+
 		public IEnumerable<Country> GetEntities()
 		{
-			throw new NotImplementedException();
+			return _dataContext.Countries;
 		}
 
 		public Country SelectById(int id)
 		{
-			throw new NotImplementedException();
-		}
-
-		public void Insert(Country obj)
-		{
-			throw new NotImplementedException();
+			return _dataContext.Countries.Find(id);
 		}
 	}
 }

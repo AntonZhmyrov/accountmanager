@@ -1,0 +1,25 @@
+﻿@model AccountManagers.ViewModels.SecondPageViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SecondPage</title>
+</head>
+<body>
+    <div>
+        @*@Html.Label("Gender: ");
+        <br/>
+        @Html.CheckBoxFor(m => m.Sex);
+        <br/>
+        @Html.CheckBoxFor(m => Convert.ToBoolean(m.Sex), "Female");
+        <br/>*@
+        @Html.DropDownListFor(m => m.Countries, new SelectList(Model.Countries, "Id", "CountryName"));
+    </div>
+</body>
+</html>

@@ -3,26 +3,33 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using AccountManagers.BusinessLogic;
+using AccountManagers.Interfaces;
 using AccountManagers.Models;
+using AccountManagers.ViewModels;
 
 namespace AccountManagers.Controllers
 {
     public class HomeController : Controller
     {
-        // GET: Home
-        public string Index()
+	    private IAccountManager _manager;
+
+	    public HomeController(IAccountManager manager)
+	    {
+		    _manager = manager;
+	    }
+
+	    // GET: Home
+		[HttpGet]
+        public ActionResult Index()
         {
-	        using (var cc = new CountryContext())
-	        {
-		        cc.Countries.Add(new Country {CountryName = "Ukraine"});
-
-		        cc.SaveChanges();
-
-		        var countries = cc.Countries;
-
-		        return countries.First().CountryName;
-	        }
-
+	       return View();
         }
+
+	    public ActionResult SecondPage()
+	    {
+			var countries = _manager.GetCountriesFromDataBase();
+			return View(new SecondPageViewModel { Countries = countries });
+	    }
     }
 }

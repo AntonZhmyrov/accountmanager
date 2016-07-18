@@ -1,0 +1,32 @@
+﻿@model AccountManagers.ViewModels.HomePageViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <div>
+        @using (Html.BeginForm("SecondPage", "Home"))
+        {
+            @Html.Label("Username: ")
+            @Html.TextBoxFor(m => m.Username);
+            <br/>
+            <br/>
+            @Html.Label("Password: ")
+            @Html.PasswordFor(m => m.Password);
+            <br/>
+            <input type="submit" value="Next" Name="Next" id="Next"/>
+        }
+    </div>
+</body>
+</html>

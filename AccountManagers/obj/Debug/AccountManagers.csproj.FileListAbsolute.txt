@@ -20,3 +20,15 @@ D:\Projects\AccountManagers\AccountManagers\bin\System.Web.Mvc.xml
 D:\Projects\AccountManagers\AccountManagers\obj\Debug\AccountManagers.csprojResolveAssemblyReference.cache
 D:\Projects\AccountManagers\AccountManagers\obj\Debug\AccountManagers.dll
 D:\Projects\AccountManagers\AccountManagers\obj\Debug\AccountManagers.pdb
+D:\Projects\AccountManagers\AccountManagers\bin\Microsoft.Practices.ServiceLocation.dll
+D:\Projects\AccountManagers\AccountManagers\bin\StructureMap.dll
+D:\Projects\AccountManagers\AccountManagers\bin\StructureMap.Net4.dll
+D:\Projects\AccountManagers\AccountManagers\bin\StructureMap.Web.dll
+D:\Projects\AccountManagers\AccountManagers\bin\WebActivatorEx.dll
+D:\Projects\AccountManagers\AccountManagers\bin\Microsoft.Practices.ServiceLocation.pdb
+D:\Projects\AccountManagers\AccountManagers\bin\Microsoft.Practices.ServiceLocation.xml
+D:\Projects\AccountManagers\AccountManagers\bin\StructureMap.pdb
+D:\Projects\AccountManagers\AccountManagers\bin\StructureMap.xml
+D:\Projects\AccountManagers\AccountManagers\bin\StructureMap.Net4.pdb
+D:\Projects\AccountManagers\AccountManagers\bin\StructureMap.Web.pdb
+D:\Projects\AccountManagers\AccountManagers\bin\StructureMap.Web.xml
