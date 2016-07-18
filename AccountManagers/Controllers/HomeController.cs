@@ -12,7 +12,7 @@ namespace AccountManagers.Controllers
 {
     public class HomeController : Controller
     {
-	    private IAccountManager _manager;
+	    private readonly IAccountManager _manager;
 
 	    public HomeController(IAccountManager manager)
 	    {
@@ -29,7 +29,7 @@ namespace AccountManagers.Controllers
 	    public ActionResult SecondPage()
 	    {
 			var countries = _manager.GetCountriesFromDataBase();
-			return View(new SecondPageViewModel { Countries = countries });
+			return View(new SecondPageViewModel { Countries = countries});
 	    }
     }
 }

@@ -1,4 +1,5 @@
-﻿@model AccountManagers.ViewModels.SecondPageViewModel
+﻿@using AccountManagers.Models
+@model AccountManagers.ViewModels.SecondPageViewModel
 
 @{
     Layout = null;
@@ -8,18 +9,68 @@
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width"/>
     <title>SecondPage</title>
 </head>
 <body>
-    <div>
-        @*@Html.Label("Gender: ");
+<div>
+    @using (Html.BeginForm())
+    {
+        @Html.HiddenFor(m => m.Sex, new {@id = "Sex"})
+        @Html.Label("Gender: ")
+        ;
         <br/>
-        @Html.CheckBoxFor(m => m.Sex);
+        @Html.CheckBox("Male", false, new {@class = ".ch", data_groupid = "1", data_multichoise = "0", data_id = "0"})
+        @Html.Label("Male")
         <br/>
-        @Html.CheckBoxFor(m => Convert.ToBoolean(m.Sex), "Female");
-        <br/>*@
-        @Html.DropDownListFor(m => m.Countries, new SelectList(Model.Countries, "Id", "CountryName"));
-    </div>
+        @Html.CheckBox("Female", false, new {@class = ".ch", data_groupid = "1", data_multichoise = "0", data_id = "1"})
+        @Html.Label("Female")
+        <br/>
+        <br/>
+        @Html.Label("Select your home country: ")
+        @Html.DropDownListFor(m => m.Countries, new SelectList(Model.Countries, "Id", "CountryName"))
+        <br/>
+        <hr/>
+        <input type="submit" value="Next" name="next" id="next"/>
+        <input type="submit" value="Back" name="back" id="back"/>
+    }
+</div>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+
+        //$(".ch").change(function () {
+        //    $(".ch").prop('checked', false);
+        //    $(this).prop('checked', true);
+        //});
+
+        //$(':checkbox').on('change', function () {
+        //    var th = $(this), name = th.attr('name');
+        //    if (th.is(':checked')) {
+        //        $(':checkbox[name="' + name + '"]').not(th).prop('checked', false);
+        //    }
+        //});
+
+        //$("input:checkbox").click(function () {
+        //    var group = "input:checkbox[name='" + $(this).attr("name") + "']";
+        //    $(group).attr("checked", false);
+        //    $(this).attr("checked", true);
+        //});
+
+        $('.ch').click(function () {
+            if (this.checked) {
+                if (!$(this).data("multichoice")) {
+                    $('.ch[data-groupid="' + $(this).data('groupid') + '"]').not(this).prop('checked', false);
+
+                    if ($(this).data('id') == '0')
+                        $('input[id=Sex]').val('Male');
+                    else
+                        $('input[id=Sex]').val('Female');
+                }
+            }
+        });
+        
+    });
+    </script>
 </body>
 </html>
