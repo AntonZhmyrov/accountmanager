@@ -6,11 +6,11 @@ namespace AccountManagers.DataAccess
 {
 	public class CountryRepository : ICountryRepository
 	{
-		private readonly CountryContext _dataContext;
+		private readonly DataContext _dataContext;
 
 		public CountryRepository()
 		{
-			_dataContext = new CountryContext();
+			_dataContext = new DataContext();
 		}
 
 		public IEnumerable<Country> GetEntities()

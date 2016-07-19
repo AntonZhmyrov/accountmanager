@@ -1,0 +1,66 @@
+﻿@model AccountManagers.ViewModels.SecondPageViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width"/>
+    <title>SecondPage</title>
+</head>
+<body>
+<div>
+    <h2>Extended registration</h2>
+    @using (Html.BeginForm())
+    {
+        @*@Html.HiddenFor(m => m.Sex)*@
+        @Html.Label("Gender: ")
+        <br/>
+        @*@Html.CheckBox("Male", true, new {@class = "ch", data_groupid = "1", data_multichoise = "0", data_id = "0"})*@
+        @Html.CheckBox("Male", true, new {@class = "ch"})
+        @Html.Label("Male")
+        <br/>
+        @*@Html.CheckBox("Female", false, new {@class = "ch", data_groupid = "1", data_multichoise = "0", data_id = "1"})*@
+        @Html.CheckBox("Female", false, new { @class = "ch"})
+        @Html.Label("Female")
+        <br/>
+        <br/>
+        @Html.Label("Select your home country: ")
+        @Html.DropDownListFor(m => m.Countries, new SelectList(Model.Countries, "Id", "CountryName"))
+        <br/>
+        <hr/>
+        @Html.ActionLink("Back", "Index", "Home")
+        <input type="submit" value="Next" name="next" id="next"/>
+    }
+</div>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+
+        $(".ch").change(function() {
+            $(".ch").prop('checked', false);
+            $(this).prop('checked', true);
+        });
+
+        //$(".ch").click(function () {
+        //    if (this.checked) {
+        //        if (!$(this).data("multichoice")) {
+        //            $('.ch[data-groupid="' + $(this).data('groupid') + '"]').not(this).prop('checked', false);
+
+        //            if ($(this).data('id') === '0') {
+        //                $('input[id=Sex]').val('Male');
+        //            }
+        //            else {
+        //                $('input[id=Sex]').val('Female');
+        //            }
+        //        }
+        //    }
+        //});
+
+    });
+    </script>
+</body>
+</html>

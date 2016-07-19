@@ -8,7 +8,7 @@ namespace AccountManagers.ViewModels
 {
 	public class SecondPageViewModel
 	{ 
-		public string Sex { get; set; }
+		public bool Sex { get; set; }
 
 		public IEnumerable<Country> Countries { get; set; }
 

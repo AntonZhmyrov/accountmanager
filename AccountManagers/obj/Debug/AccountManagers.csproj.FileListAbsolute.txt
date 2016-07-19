@@ -31,4 +31,3 @@ D:\Projects\AccountManagers\AccountManagers\bin\StructureMap.xml
 D:\Projects\AccountManagers\AccountManagers\bin\StructureMap.Net4.pdb
 D:\Projects\AccountManagers\AccountManagers\bin\StructureMap.Web.pdb
 D:\Projects\AccountManagers\AccountManagers\bin\StructureMap.Web.xml
-D:\Projects\AccountManagers\AccountManagers\obj\Debug\AccountManagers.csprojResolveAssemblyReference.cache

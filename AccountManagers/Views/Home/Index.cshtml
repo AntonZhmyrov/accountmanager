@@ -11,21 +11,26 @@
     <meta name="viewport" content="width=device-width" />
     <title>Index</title>
     <style>
-
     </style>
 </head>
 <body>
     <div>
-        @using (Html.BeginForm("SecondPage", "Home"))
+        <h2>Registration</h2>
+        @using (Html.BeginForm("SaveCookies", "Home"))
         {
             @Html.Label("Username: ")
             @Html.TextBoxFor(m => m.Username);
-            <br/>
-            <br/>
+            <br />
+            <br />
             @Html.Label("Password: ")
             @Html.PasswordFor(m => m.Password);
-            <br/>
-            <input type="submit" value="Next" Name="Next" id="Next"/>
+            <br />
+            <br />
+            @Html.Label("Confirm password: ")
+            @Html.PasswordFor(m => m.ConfirmedPassword)
+            <br />
+            <hr />
+            <input type="submit" value="Next" name="Next" id="Next" />
         }
     </div>
 </body>

@@ -11,7 +11,7 @@ namespace AccountManagers.Interfaces
 	{
 		IEnumerable<Account> GetEntities();
 		Account SelectById(int id);
-		void Insert(Account account);
+		int Insert(Account account);
 		void Delete(int accountId);
 		void Update(Account accountToUpdate);
 	}

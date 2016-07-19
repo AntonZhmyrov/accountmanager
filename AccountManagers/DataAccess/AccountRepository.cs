@@ -10,11 +10,11 @@ namespace AccountManagers.DataAccess
 {
 	public class AccountRepository : IAccountRepository
 	{
-		private readonly AccountContext _dataContext;
+		private readonly DataContext _dataContext;
 
 		public AccountRepository()
 		{
-			_dataContext = new AccountContext();
+			_dataContext = new DataContext();
 		}
 
 		public IEnumerable<Account> GetEntities()
@@ -27,10 +27,12 @@ namespace AccountManagers.DataAccess
 			return _dataContext.Accounts.Find(id);
 		}
 
-		public void Insert(Account account)
+		public int Insert(Account account)
 		{
 			_dataContext.Accounts.Add(account);
 			_dataContext.SaveChanges();
+
+			return _dataContext.Entry(account).Entity.Id;
 		}
 
 		public void Delete(int accountId)

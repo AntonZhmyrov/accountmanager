@@ -10,5 +10,6 @@ namespace AccountManagers.Interfaces
 	{
 		IEnumerable<Account> GetAllAccounts();
 		IEnumerable<Country> GetCountriesFromDataBase();
+		int AddNewAccount(Account account);
 	}
 }

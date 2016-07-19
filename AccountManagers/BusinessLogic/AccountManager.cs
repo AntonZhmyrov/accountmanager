@@ -26,5 +26,10 @@ namespace AccountManagers.BusinessLogic
 		{
 			return _countryRepository.GetEntities();
 		}
+
+		public int AddNewAccount(Account account)
+		{
+			return _accountRepository.Insert(account);
+		}
 	}
 }

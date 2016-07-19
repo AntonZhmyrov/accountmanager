@@ -12,5 +12,6 @@
 		public string Password { get; set; }
 		public Gender Sex { get; set; }
 		public int CountryId { get; set; }
+		public Country Country { get; set; }
 	}
 }
