@@ -2,10 +2,10 @@
 
 namespace AccountManagers.Models
 {
-	public class DataContext : DbContext
+	public class AccountDBContext : DbContext
 	{
-		public DataContext()
-            : base("DbConnection")
+		public AccountDBContext()
+			: base("AccountDBContext")
         { }
 
 		public DbSet<Country> Countries { get; set; }

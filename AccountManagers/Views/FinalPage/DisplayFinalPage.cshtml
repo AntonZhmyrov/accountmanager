@@ -1,0 +1,27 @@
+﻿@model AccountManagers.ViewModels.FinalPageViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>DisplayFinalPage</title>
+</head>
+<body>
+    <div>
+        <h2>Account info</h2>
+        <ol>
+            @foreach (var account in Model.Accounts)
+            {
+                <li>@account.Username</li>
+                <li>@account.Gender</li>
+                <li>@account.CountryName</li>
+            }
+        </ol>
+    </div>
+</body>
+</html>

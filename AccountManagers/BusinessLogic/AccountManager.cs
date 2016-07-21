@@ -27,6 +27,16 @@ namespace AccountManagers.BusinessLogic
 			return _countryRepository.GetEntities();
 		}
 
+		public Country GetCountryById(int id)
+		{
+			return _countryRepository.SelectById(id);
+		}
+
+		public Account GetAccountById(int id)
+		{
+			return _accountRepository.SelectById(id);
+		}
+
 		public int AddNewAccount(Account account)
 		{
 			return _accountRepository.Insert(account);

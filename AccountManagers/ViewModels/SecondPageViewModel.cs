@@ -12,5 +12,6 @@ namespace AccountManagers.ViewModels
 
 		public IEnumerable<Country> Countries { get; set; }
 
+		public int SelectedCountryId { get; set; }
 	}
 }

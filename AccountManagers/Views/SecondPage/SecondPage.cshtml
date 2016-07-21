@@ -29,7 +29,7 @@
         <br/>
         <br/>
         @Html.Label("Select your home country: ")
-        @Html.DropDownListFor(m => m.Countries, new SelectList(Model.Countries, "Id", "CountryName"))
+        @Html.DropDownListFor(m => m.SelectedCountryId, new SelectList(Model.Countries, "Id", "CountryName"))
         <br/>
         <hr/>
         @Html.ActionLink("Back", "Index", "Home")

@@ -6,6 +6,6 @@ namespace AccountManagers.Models
 	{
 		public int Id { get; set; }
 		public string CountryName { get; set; }
-		public IEnumerable<Account> Accounts { get; set; } 
+		public virtual IEnumerable<Account> Accounts { get; set; } 
 	}
 }

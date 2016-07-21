@@ -23,18 +23,16 @@ namespace AccountManagers.Controllers
 			{
 				var username = httpCookie.Value;
 
-				if (HttpContext.Request.Cookies["username"] != null &&
-				    HttpContext.Request.Cookies["password"] != null)
-				{
-					var usernameCookie = new HttpCookie("username");
-					var passwordCookie = new HttpCookie("password");
+				var usernameCookie = new HttpCookie("username");
+				var passwordCookie = new HttpCookie("password");
 
-					usernameCookie.Expires = DateTime.Now.AddDays(-1d);
-					passwordCookie.Expires = DateTime.Now.AddDays(-1d);
+				usernameCookie.Expires = DateTime.Now.AddDays(-1d);
+				passwordCookie.Expires = DateTime.Now.AddDays(-1d);
 
-					HttpContext.Response.Cookies.Add(usernameCookie);
-					HttpContext.Response.Cookies.Add(passwordCookie);
-				}
+				HttpContext.Response.Cookies.Add(usernameCookie);
+				HttpContext.Response.Cookies.Add(passwordCookie);
+
+				HttpContext.Response.Cookies.Clear();
 
 				return View(new HomePageViewModel {Username = username});
 			}
@@ -45,12 +43,12 @@ namespace AccountManagers.Controllers
 	    [HttpPost]
 	    public ActionResult SaveCookies(HomePageViewModel viewModel)
 		{
-			if (viewModel != null)
+			if (viewModel != null) 
 			{
 				HttpContext.Response.Cookies.Add(new HttpCookie("username", viewModel.Username));
 
 				HttpContext.Response.Cookies.Add(new HttpCookie("password", 
-					PasswordSecurityProvider.EncryptPassword(viewModel.Username,viewModel.Password)));
+					viewModel.Password));
 			}
 
 			return RedirectToAction("SecondPage", "SecondPage");

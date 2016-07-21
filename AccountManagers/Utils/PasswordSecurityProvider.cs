@@ -1,33 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Web.Security;
+using System.Security.Cryptography;
 
 namespace AccountManagers.Utils
 {
 	public static class PasswordSecurityProvider
 	{
-		public static string EncryptPassword(string username, string password)
+		public static string HashSha256(string password)
 		{
-			if (string.IsNullOrEmpty(password) || string.IsNullOrEmpty(username))
-			{
-				throw new ArgumentNullException();
-			}
+			var sha256Provider = new SHA256Cng();
+			var passwordBytes = Encoding.Default.GetBytes(password);
 
-			var byteData = Encoding.Default.GetBytes(password);
-			return Encoding.Default.GetString(MachineKey.Protect(byteData, username));
-		}
-
-		public static string DecryptPassword(string passwordString, string username)
-		{
-			if (string.IsNullOrEmpty(passwordString) || string.IsNullOrEmpty(username))
-			{
-				throw new ArgumentNullException();
-			}
-
-			var byteData = Encoding.Default.GetBytes(passwordString);
-			return Encoding.Default.GetString(MachineKey.Unprotect(byteData, username));
+			return sha256Provider.ComputeHash(passwordBytes).ToString();
 		}
 	}
 }
