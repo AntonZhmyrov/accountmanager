@@ -1,7 +1,7 @@
 ﻿@model AccountManagers.ViewModels.HomePageViewModel
 
 @{
-    Layout = null;
+    Layout = "~/Views/_BasicLayout.cshtml";
 }
 
 <!DOCTYPE html>
@@ -9,28 +9,25 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <title>Index</title>
-    <style>
-    </style>
 </head>
 <body>
     <div>
-        <h2>Registration</h2>
+        <h2 class="h2" style="margin: 10px 0 10px 10px">Registration</h2>
         @using (Html.BeginForm("SaveCookies", "Home"))
         {
-            @Html.Label("Username: ")
-            @Html.TextBoxFor(m => m.Username);
-            <br />
-            <br />
-            @Html.Label("Password: ")
-            @Html.PasswordFor(m => m.Password);
-            <br />
-            <br />
-            @Html.Label("Confirm password: ")
-            @Html.PasswordFor(m => m.ConfirmedPassword)
-            <br />
-            <hr />
-            <input type="submit" value="Next" name="Next" id="Next" />
+            @Html.Label("Username: ", new { @style = "margin: 10px 0 10px 20px; font-size: 17px;" })
+            @Html.TextBoxFor(m => m.Username, new { @style = "margin: 10px 0 10px 87px; font-size: 16px;" });
+            <br/>
+            @Html.Label("Password: ", new { @style = "margin: 10px 0 10px 20px; font-size: 17px;" })
+            @Html.PasswordFor(m => m.Password, new { @style = "margin: 10px 0 10px 88px; font-size: 16px;" });
+            <br/>
+            @Html.Label("Confirm password: ", new { @style = "margin: 10px 0 10px 20px; font-size: 17px;" })
+            @Html.PasswordFor(m => m.ConfirmedPassword, new { @style = "margin: 10px 0 10px 20px; font-size: 16px;" })
+            <br/>
+            <hr class="hr"/>
+            <input type="submit" value="Next" name="Next" id="Next" class="btn" style="margin: 10px 0 0 20px;"/>
         }
     </div>
 </body>

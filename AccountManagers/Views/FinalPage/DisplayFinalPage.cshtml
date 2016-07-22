@@ -1,7 +1,7 @@
 ﻿@model AccountManagers.ViewModels.FinalPageViewModel
 
 @{
-    Layout = null;
+    Layout = "~/Views/_BasicLayout.cshtml";
 }
 
 <!DOCTYPE html>
@@ -17,9 +17,14 @@
         <ol>
             @foreach (var account in Model.Accounts)
             {
-                <li>@account.Username</li>
-                <li>@account.Gender</li>
-                <li>@account.CountryName</li>
+                <li style="padding: 20px; font-size: 16px">
+                    <span>Username: </span>@account.Username
+                    <br/>
+                    <span>Gender: </span>@account.Gender
+                    <br/>
+                    <span>Country Name: </span>@account.CountryName
+                    <br/>
+                </li>
             }
         </ol>
     </div>

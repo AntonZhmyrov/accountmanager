@@ -1,7 +1,7 @@
 ﻿@model AccountManagers.ViewModels.SecondPageViewModel
 
 @{
-    Layout = null;
+    Layout = "~/Views/_BasicLayout.cshtml";
 }
 
 <!DOCTYPE html>
@@ -16,15 +16,14 @@
     <h2>Extended registration</h2>
     @using (Html.BeginForm())
     {
-        @*@Html.HiddenFor(m => m.Sex)*@
         @Html.Label("Gender: ")
         <br/>
-        @*@Html.CheckBox("Male", true, new {@class = "ch", data_groupid = "1", data_multichoise = "0", data_id = "0"})*@
-        @Html.CheckBox("Male", true, new {@class = "ch"})
+        @Html.CheckBoxFor(m => m.Sex, new {@class = "ch", @value = true })
+        @*@Html.CheckBox("Male", true, new {@class = "ch", @value = Boolean.TrueString})*@
         @Html.Label("Male")
         <br/>
-        @*@Html.CheckBox("Female", false, new {@class = "ch", data_groupid = "1", data_multichoise = "0", data_id = "1"})*@
-        @Html.CheckBox("Female", false, new { @class = "ch"})
+        @Html.CheckBoxFor(m => m.Sex, new { @class = "ch", @value = false })
+        @*@Html.CheckBox("Female", false, new { @class = "ch", @value = Boolean.FalseString })*@
         @Html.Label("Female")
         <br/>
         <br/>
@@ -36,6 +35,7 @@
         <input type="submit" value="Next" name="next" id="next"/>
     }
 </div>
+
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script type="text/javascript">
     $(document).ready(function () {
@@ -44,22 +44,6 @@
             $(".ch").prop('checked', false);
             $(this).prop('checked', true);
         });
-
-        //$(".ch").click(function () {
-        //    if (this.checked) {
-        //        if (!$(this).data("multichoice")) {
-        //            $('.ch[data-groupid="' + $(this).data('groupid') + '"]').not(this).prop('checked', false);
-
-        //            if ($(this).data('id') === '0') {
-        //                $('input[id=Sex]').val('Male');
-        //            }
-        //            else {
-        //                $('input[id=Sex]').val('Female');
-        //            }
-        //        }
-        //    }
-        //});
-
     });
     </script>
 </body>

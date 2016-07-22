@@ -13,7 +13,7 @@ namespace AccountManagers.Utils
 			var sha256Provider = new SHA256Cng();
 			var passwordBytes = Encoding.Default.GetBytes(password);
 
-			return sha256Provider.ComputeHash(passwordBytes).ToString();
+			return Encoding.UTF8.GetString(sha256Provider.ComputeHash(passwordBytes));
 		}
 	}
 }

@@ -1,0 +1,13 @@
+﻿@model AccountManagers.ViewModels.BasicLayoutViewModel
+
+<div style="height: 40px; background-color: grey; text-align: right;">
+    @if (Model.Enabled)
+    {
+        @Html.ActionLink(Model.ActionLinkName, "Index", "Home", null, new {@style = "color: white; margin: 20px"})
+    }
+    else
+    {
+        <text>@Model.ActionLinkName</text>
+    }
+    
+</div>

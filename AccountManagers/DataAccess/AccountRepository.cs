@@ -24,7 +24,7 @@ namespace AccountManagers.DataAccess
 
 		public Account SelectById(int id)
 		{
-			return _dataContext.Accounts.Find(id);
+			return _dataContext.Accounts.Single(m => m.Id == id);
 		}
 
 		public int Insert(Account account)

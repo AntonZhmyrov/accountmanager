@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using AccountManagers.Interfaces;
 using AccountManagers.Models;
 
@@ -20,7 +21,7 @@ namespace AccountManagers.DataAccess
 
 		public Country SelectById(int id)
 		{
-			return _dataContext.Countries.Find(id);
+			return _dataContext.Countries.Single(m => m.Id == id);
 		}
 	}
 }

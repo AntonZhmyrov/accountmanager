@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using AccountManagers.Interfaces;
 using AccountManagers.Models;
@@ -20,6 +21,11 @@ namespace AccountManagers.Controllers
 
         public ActionResult SecondPage()
         {
+			if (CookieManager.CookieExists("loggedinuser", HttpContext))
+			{
+				return RedirectToAction("DisplayFinalPage", "FinalPage");
+			}
+
 			var countries = _manager.GetCountriesFromDataBase();
 			return View(new SecondPageViewModel { Countries = countries });
         }
@@ -32,12 +38,8 @@ namespace AccountManagers.Controllers
 	    [HttpPost]
 	    public ActionResult SecondPage(SecondPageViewModel viewModel)
 	    {
-		    var usernameCookie = HttpContext.Request.Cookies.Get("username");
-		    var passwordCookie = HttpContext.Request.Cookies.Get("password");
-
-
-		    var username = usernameCookie.Value;
-		    var password = passwordCookie.Value;
+		    var username = CookieManager.ReadCookieValue("username", HttpContext);
+		    var password = CookieManager.ReadCookieValue("password", HttpContext);
 
 		    var hashedPassword = PasswordSecurityProvider.HashSha256(password);
 
@@ -45,29 +47,30 @@ namespace AccountManagers.Controllers
 		    {
 			    Username = username,
 			    Password = hashedPassword,
-			    Sex = viewModel.Sex ? Gender.Male : Gender.Female, 
-				Country = _manager.GetCountryById(viewModel.SelectedCountryId),
+			    Sex = viewModel.Sex ? Gender.Male : Gender.Female,
 				CountryId = viewModel.SelectedCountryId
 		    };
 
-		    var accountId = _manager.AddNewAccount(account);
+		    _manager.AddNewAccount(account);
 
 		    var query = from acc in _manager.GetAllAccounts()
-						where acc.Country.CountryName == account.Country.CountryName
+						where acc.CountryId == account.CountryId
 						select acc;
 
-		    var accountDisplayInfo = new List<AccountDisplayInfo>();
-
-		    var i = 1;
-
-		    foreach (var acc in query)
+		    var accountDisplayInfo = query.Select(acc => new AccountDisplayInfo
 		    {
-			    accountDisplayInfo.Add(new AccountDisplayInfo {AccountId = i, 
-					CountryName = acc.Country.CountryName, 
-					Username = acc.Username, 
-					Gender = Enum.GetName(typeof(Gender), acc.Sex)});
-			    i++;
-		    }
+			    CountryName = _manager.GetCountryById(acc.CountryId).CountryName,
+			    Username = acc.Username,
+			    Gender = Enum.GetName(typeof (Gender), acc.Sex)
+		    }).ToList();
+
+		    var uName = "";
+		    var pass = "";
+
+			CookieManager.RemoveCookie("username", HttpContext, out uName);
+			CookieManager.RemoveCookie("password", HttpContext, out pass);
+
+			CookieManager.AddCookie("loggedinuser", account.Username, HttpContext);
 
 		    return View("../FinalPage/DisplayFinalPage", new FinalPageViewModel {Accounts = accountDisplayInfo});
 	    }

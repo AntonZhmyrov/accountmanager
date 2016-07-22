@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using AccountManagers.BusinessLogic;
@@ -17,24 +14,25 @@ namespace AccountManagers.Controllers
 		[HttpGet]
         public ActionResult Index()
 		{
-			var httpCookie = HttpContext.Request.Cookies.Get("username");
+			//HttpContext.Request.Cookies.Clear();
+			//HttpContext.Response.Cookies.Clear();
 
-			if (httpCookie != null)
+			//if (CookieManager.CookieExists("loggedinuser", HttpContext))
+			//{
+			//	return RedirectToAction("DisplayFinalPage", "FinalPage");	
+			//}
+			
+			CookieManager.RemoveCookie("loggedinuser", HttpContext);
+
+			var uName = "";
+			var pass = "";
+
+			var statusUsername = CookieManager.RemoveCookie("username", HttpContext, out uName);
+			var statusPassword = CookieManager.RemoveCookie("password", HttpContext, out pass);
+
+			if (!statusUsername)
 			{
-				var username = httpCookie.Value;
-
-				var usernameCookie = new HttpCookie("username");
-				var passwordCookie = new HttpCookie("password");
-
-				usernameCookie.Expires = DateTime.Now.AddDays(-1d);
-				passwordCookie.Expires = DateTime.Now.AddDays(-1d);
-
-				HttpContext.Response.Cookies.Add(usernameCookie);
-				HttpContext.Response.Cookies.Add(passwordCookie);
-
-				HttpContext.Response.Cookies.Clear();
-
-				return View(new HomePageViewModel {Username = username});
+				return View(new HomePageViewModel { Username = uName });
 			}
 
 			return View();
@@ -45,10 +43,8 @@ namespace AccountManagers.Controllers
 		{
 			if (viewModel != null) 
 			{
-				HttpContext.Response.Cookies.Add(new HttpCookie("username", viewModel.Username));
-
-				HttpContext.Response.Cookies.Add(new HttpCookie("password", 
-					viewModel.Password));
+				CookieManager.AddCookie("username", viewModel.Username, HttpContext);
+				CookieManager.AddCookie("password", viewModel.Password, HttpContext);
 			}
 
 			return RedirectToAction("SecondPage", "SecondPage");
