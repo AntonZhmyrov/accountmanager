@@ -9,29 +9,64 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width"/>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <title>SecondPage</title>
+    <style>
+        select {
+            margin-left: 10px;
+            font-size: 17px;
+            cursor: pointer;
+        }
+
+        a {
+            margin-left: 20px;
+            font-size: 18px;
+        }
+
+        input {
+            margin-left: 20px;
+            font-size: 18px;
+        }
+    </style>
 </head>
 <body>
 <div>
-    <h2>Extended registration</h2>
+    <h2 class="h2" style="margin: 10px 0 10px 10px">Extended registration</h2>
     @using (Html.BeginForm())
     {
-        @Html.Label("Gender: ")
+        @Html.Label("Gender: ", 
+            new { @style = "margin: 10px 0 0 20px; font-size: 17px;" })
+
         <br/>
-        @Html.CheckBoxFor(m => m.Sex, new {@class = "ch", @value = true })
-        @*@Html.CheckBox("Male", true, new {@class = "ch", @value = Boolean.TrueString})*@
-        @Html.Label("Male")
+        
+        @Html.CheckBoxFor(m => m.Sex, 
+            new {@class = "ch", @value = true, @style = "margin: 0 0 0 30px" })
+        
+        @Html.Label("Male", 
+            new { @style = "margin: 10px 0 10px 5px; font-size: 17px;" })
+
         <br/>
-        @Html.CheckBoxFor(m => m.Sex, new { @class = "ch", @value = false })
-        @*@Html.CheckBox("Female", false, new { @class = "ch", @value = Boolean.FalseString })*@
-        @Html.Label("Female")
+        
+        @Html.CheckBoxFor(m => m.Sex,
+            new { @class = "ch", @value = false, @style = "margin: 0 0 0 30px" })
+        
+        @Html.Label("Female", 
+            new { @style = "margin: 10px 0 0 5px; font-size: 17px;" })
+        
         <br/>
         <br/>
-        @Html.Label("Select your home country: ")
-        @Html.DropDownListFor(m => m.SelectedCountryId, new SelectList(Model.Countries, "Id", "CountryName"))
+        
+        @Html.Label("Select your home country: ", 
+            new { @style = "margin: 0 0 0 20px; font-size: 17px;" })
+        
+        @Html.DropDownListFor(m => m.SelectedCountryId, 
+            new SelectList(Model.Countries, "Id", "CountryName"))
+        
         <br/>
         <hr/>
+        
         @Html.ActionLink("Back", "Index", "Home")
+        
         <input type="submit" value="Next" name="next" id="next"/>
     }
 </div>

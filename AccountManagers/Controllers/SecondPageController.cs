@@ -21,10 +21,10 @@ namespace AccountManagers.Controllers
 
         public ActionResult SecondPage()
         {
-			if (CookieManager.CookieExists("loggedinuser", HttpContext))
-			{
-				return RedirectToAction("DisplayFinalPage", "FinalPage");
-			}
+			//if (CookieManager.CookieExists("loggedinuser", HttpContext))
+			//{
+			//	return RedirectToAction("DisplayFinalPage", "FinalPage");
+			//}
 
 			var countries = _manager.GetCountriesFromDataBase();
 			return View(new SecondPageViewModel { Countries = countries });
